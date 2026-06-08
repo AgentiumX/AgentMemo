@@ -1,0 +1,10 @@
+F:\Projects\private\AgentMemo\DesktopMemo\publish\Resources\tray.ico
+F:\Projects\private\AgentMemo\DesktopMemo\publish\DesktopMemo.exe
+F:\Projects\private\AgentMemo\DesktopMemo\publish\DesktopMemo.exe.config
+F:\Projects\private\AgentMemo\DesktopMemo\publish\DesktopMemo.pdb
+F:\Projects\private\AgentMemo\DesktopMemo\publish\Markdig.dll
+F:\Projects\private\AgentMemo\DesktopMemo\publish\Newtonsoft.Json.dll
+F:\Projects\private\AgentMemo\DesktopMemo\publish\System.Buffers.dll
+F:\Projects\private\AgentMemo\DesktopMemo\publish\System.Memory.dll
+F:\Projects\private\AgentMemo\DesktopMemo\publish\System.Numerics.Vectors.dll
+F:\Projects\private\AgentMemo\DesktopMemo\publish\System.Runtime.CompilerServices.Unsafe.dll

@@ -1,0 +1,64 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+
+      - name: Restore dependencies
+        run: dotnet restore DesktopMemo/DesktopMemo.csproj
+
+      - name: Build Release
+        run: dotnet build DesktopMemo/DesktopMemo.csproj -c Release --no-restore
+
+      - name: Publish
+        run: dotnet publish DesktopMemo/DesktopMemo.csproj -c Release -o ./publish --no-build
+
+      - name: Remove debug symbols
+        run: Remove-Item ./publish/*.pdb -Force
+        shell: pwsh
+
+      - name: Get version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Package zip
+        run: |
+          Compress-Archive -Path ./publish/* -DestinationPath "DesktopMemo-${{ steps.version.outputs.VERSION }}.zip"
+        shell: pwsh
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: DesktopMemo ${{ steps.version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+          files: DesktopMemo-${{ steps.version.outputs.VERSION }}.zip
+          body: |
+            ## DesktopMemo ${{ steps.version.outputs.VERSION }}
+
+            ### 使用方法
+            1. 下载 `DesktopMemo-${{ steps.version.outputs.VERSION }}.zip`
+            2. 解压到任意目录
+            3. 双击 `DesktopMemo.exe` 即可运行
+
+            ### 系统要求
+            - **Win10 / Win11**: 已内置 .NET Framework 4.8，解压即用
+            - **Win7**: 需先安装 [.NET Framework 4.8 Runtime](https://dotnet.microsoft.com/download/dotnet-framework/net48)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
