@@ -1,0 +1,7 @@
+{
+  "apiPort": 19527,
+  "defaultColor": "yellow",
+  "autoStart": false,
+  "blurIntensity": 80,
+  "fontSize": 14.0
+}

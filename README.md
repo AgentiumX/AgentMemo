@@ -6,6 +6,10 @@
 ![Windows](https://img.shields.io/badge/Windows-7%20%7C%2010%20%7C%2011-0078D6)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+## 📸 截图
+
+![DesktopMemo 截图](docs/screenshots/main-view.png)
+
 ## ✨ 功能特性
 
 - **🪟 玻璃质感 UI** — 自动适配 Win7(DWM Blur)/Win10(Acrylic)/Win11(Mica) 原生玻璃效果
